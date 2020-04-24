@@ -3,7 +3,7 @@ const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const compression = require("compression");
-
+const db = require ("./models/index")
 const PORT = process.env.PORT || 3000
 
 const app = express();
@@ -24,13 +24,13 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
   useCreateIndex: true
 });
 
-// db.Workout.create({})
-//   .then(dbWorkout => {
-//     console.log(dbWorkout);
-//   })
-//   .catch(({message}) => {
-//     console.log(message);
-//   });
+db.Workout.create({})
+  .then(dbWorkout => {
+    console.log(dbWorkout);
+  })
+  .catch(({message}) => {
+    console.log(message);
+  });
 
 // routes
 app.use(require("./routes/apiRoutes"));
